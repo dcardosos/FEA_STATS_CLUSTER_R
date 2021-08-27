@@ -1,0 +1,109 @@
+---
+title: "Relatório"
+author: "Douglas Cardoso - 11766990"
+date: "8/26/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+```
+
+# Exercício
+
+Obter o dendograma considerando o método do vizinho mais próximo e matriz de distância Euclidiana para as variáveis padronizadas.
+
+## Tabela
+```{r}
+tibble::tibble(
+  nome = c('MIT', 'UColombia', 'UChicago', 'Michigan', 'Oxford', 'USP'),
+  num_alunos = c(11067, 25045, 13557, 43147, 19720, 65711),
+  num_funcionarios = c(2982, 6189, 2449, 6809, 6750, 5582),
+  num_estudantes_estrangeiros = c(3717, 8105, 3379, 7527, 7353, 2086),
+  anos = c(157, 264, 162, 201, 922, 191)) -> universidades
+
+cols <- c("Nome", 
+          "Nº alunos", 
+          "Nº funcionários", 
+          "Nº estudantes estrangeiros", 
+          "Anos de existência")
+
+knitr::kable(universidades, col.names = cols)
+```
+
+## Padronização das variáveis
+```{r}
+universidades %>% 
+  recipes::recipe(nome ~ .)  %>% 
+  recipes::step_normalize(recipes::all_predictors()) %>% 
+  recipes::prep() %>% 
+  recipes::bake(new_data = NULL) %>% 
+  dplyr::relocate(nome) %>% 
+  knitr::kable(col.names = cols)
+```
+
+## Matriz de Distância Euclideana
+```{r}
+universidades %>% 
+  recipes::recipe(nome ~ .)  %>% 
+  recipes::step_normalize(recipes::all_predictors()) %>% 
+  recipes::prep() %>% 
+  recipes::bake(new_data = NULL) %>% 
+  dplyr::select(-nome) %>% 
+  dist(method = "euclidean") %>% 
+  as.matrix() -> euclidean_matrix
+
+
+rownames(euclidean_matrix) <- colnames(euclidean_matrix) <- universidades$nome 
+
+euclidean_matrix[upper.tri(euclidean_matrix, diag = TRUE)] <- ''
+
+euclidean_matrix %>%  
+  as.data.frame() %>% 
+  knitr::kable()
+```
+
+## Dendograma
+
+```{r}
+universidades %>% 
+  recipes::recipe(nome ~ .)  %>% 
+  recipes::step_normalize(recipes::all_predictors()) %>% 
+  recipes::prep() %>% 
+  recipes::bake(new_data = NULL) %>% 
+  dplyr::select(-nome) %>% 
+  dist(method = "euclidean") %>% 
+  hclust(method = 'single') -> clusters
+
+clusters %>% 
+  as.dendrogram() %>%
+  dendextend::set_labels(universidades$nome[clusters$order]) %>% 
+  dendextend::set('branches_k_color') -> dendograma
+```
+
+#
+
+(a) Quais as duas universidades mais parecidas?
+```{r}
+dendograma %>%
+  dendextend::cut_lower_fun(h = 1) -> ex
+
+
+ex[[1]]
+
+```
+
+(b) Considerando 4 grupos. Quais universidades estão em cada grupo.
+  
+```{r}
+dendograma %>%
+  plot() 
+
+dendograma %>% 
+  dendextend::rect.dendrogram(k = 4, border = 2, lty = 5, lwd = 2)
+
+```
+
+
+
