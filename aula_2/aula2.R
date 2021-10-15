@@ -1,5 +1,6 @@
 library(magrittr)
 library(tidymodels)
+library(ggdendro)
 
 tibble::tibble(
   nome = c('MIT', 'UColombia', 'UChicago', 'Michigan', 'Oxford', 'USP'),
@@ -18,11 +19,11 @@ universidades %>%
   hclust(method = 'single') ->
   clusters
 
+"
+ggdendrogram(clusters) + 
+  scale_y_continuous(breaks=c(0.5, 1.2))
+"
 
-factoextra::fviz_dend(clusters)
-
-
-  
 clusters %>% 
   as.dendrogram() %>%
   dendextend::set_labels(universidades$nome[clusters$order]) %>% 
@@ -30,7 +31,11 @@ clusters %>%
   dendograma
 
 dendograma %>%
-  plot() 
+  plot() +
+  ggplot2::scale_y_continuous(breaks=c())
 
 dendograma %>% 
   dendextend::rect.dendrogram(k = 2, border = 2, lty = 5, lwd = 2)
+
+
+

@@ -1,0 +1,45 @@
+Paises,Deficit,Gastos com educacao,,Paises,Deficit,Gastos com educacao
+Áustria,"1,5","5,6",,Áustria,"-0,635838367073665","0,189132401197758"
+Espanha,"6,8","4,5",,Espanha,"1,42739225261435","-0,504353069860689"
+Dinamarca,"0,7","7,9",,Dinamarca,"-0,947269404007704","1,63914747704724"
+Bulgária,"1,2","3,5",,Bulgária,"-0,752625005923929","-1,13479440718655"
+Reino Unido,"5,8","6,1",,Reino Unido,"1,0381034564468","0,504353069860689"
+Itália,"2,8","4,2",,Itália,"-0,12976293205585","-0,693485471058448"
+,,,,,,
+media,"3,13333333333333","5,3",,,,
+desvio padrao,"2,56878700297761","1,58619040471187",,,,
+,,,,,,
+,,,,,,
+,Áustria,Espanha,Dinamarca,Bulgária,Reino Unido,Itália
+Áustria,,"2,17665860634766","1,48308226708993","1,32906783610642","1,70336293797984","1,01741174278389"
+Espanha,,,"3,1990018096315","2,26934605720105","1,08121868423237","1,56859916305222"
+Dinamarca,,,,"2,78076248874511","2,28680207748969","2,47173892275689"
+Bulgária,,,,,"2,42765583999359","0,763354924114441"
+Reino Unido,,,,,,"1,67294024744027"
+Itália,,,,,,
+,,,,,,
+,,,,,,
+,Áustria,Espanha,Dinamarca,Reino Unido,Itália + Bulgária,
+Áustria,,"2,17665860634766","1,48308226708993","1,70336293797984","1,01741174278389",
+Espanha,,,"3,1990018096315","1,08121868423237","1,56859916305222",
+Dinamarca,,,,"2,28680207748969","2,47173892275689",
+Reino Unido,,,,,"1,67294024744027",
+Itália + Bulgária,,,,,,
+,,,,,,
+,,,,,,
+, (Itália + Bulgária) + Áustria,Espanha,Dinamarca,Reino Unido,,
+ (Itália + Bulgária) + Áustria,,"1,56859916305222","1,48308226708993","1,70336293797984",,
+Espanha,,,"3,1990018096315","1,08121868423237",,
+Dinamarca,,,,"2,28680207748969",,
+Reino Unido,,,,,,
+,,,,,,
+,,,,,,
+, (Itália + Bulgária) + Áustria,Espanha + Reino Unido,Dinamarca,,,
+ (Itália + Bulgária) + Áustria,,"1,56859916305222","1,48308226708993",,,
+Espanha + Reino Unido,,,"2,28680207748969",,,
+Dinamarca,,,,,,
+,,,,,,
+,,,,,,
+, (Itália + Bulgária + Áustria) + Dinamarca,Espanha + Reino Unido,,,,
+ (Itália + Bulgária + Áustria) + Dinamarca,,"1,56859916305222",,,,
+Espanha + Reino Unido,,,,,,
